@@ -28,3 +28,13 @@ in this case, we are using /opt is our working directory for Ansible.
    ```sh
    ansible -i hosts all -m ping 
    ```
+# run the command if normal command not working
+
+ansible-playbook jenkinsinstall.yml -i hosts
+
+# run the command to check the connection between control nod  enad manage node
+
+ansible-playbook jenkinsinstall.yml -i 10.1.1.61,
+
+
+
