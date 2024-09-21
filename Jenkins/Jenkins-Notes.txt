@@ -75,3 +75,14 @@ sudo systemctl start jenkins
 ### You can check the status of the Jenkins service using the command:
 
 sudo systemctl status jenkins
+
+### Link to share the step for installation jenkins
+
+https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-22-04
+
+### Youtube link to share the installation step for jenkins
+
+https://www.youtube.com/watch?v=Y9qDyNy_mT4
+
+
+
