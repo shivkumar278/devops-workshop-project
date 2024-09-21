@@ -1,0 +1,67 @@
+## Jenkins Installation process in ubuntu machine
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+
+### Another process to install jenkins 
+
+sudo apt update
+sudo apt install openjdk-11-jdk -y
+sudo apt install maven -y
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install jenkins -y
+
+
+### This is what you get when trying to contact the Jenkins web server from the localhost
+
+root@base:~# curl -vI http://localhost:8080/jenkins/
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> HEAD /jenkins/ HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.58.0
+> Accept: */*
+>
+
+
+
+### Jenkins Configuration: The configuration file at /etc/default/jenkins
+
+### Log Files: The Jenkins log file at /var/log/jenkins/jenkins.log
+
+### Firewall Rules (iptables -S): All the chains/rules (INPUT, FORWARD, and OUTPUT) are set to ACCEPT. Still, since communication here is within the localhost
+
+### Network Packets and Ports (netstat -tapon): Shows Jenkins (java process) listening on the expected port (default 8080, but I've tried others); it also shows the connection as ESTABLISHED (on both ends) after the curl client sends a request like the one shown above. This shows a successful TCP handshake.
+
+### Network Traffic (tcpdump -i lo): Shows the 3-way handshake being made; it explains why netstat shows connections as ESTABLISHED
+
+
+
+### To check the jenkins services status
+
+    systemsctl status jenkins
+
+### To start the jenkins services
+  
+    systemsctl start jenkins
+
+### Disable and enable toe firewall
+
+    ufw enable
+    ufw disable
+
+### 
