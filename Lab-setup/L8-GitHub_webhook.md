@@ -15,3 +15,5 @@
 
 
 Once it is enabled make changes to source to trigger the build. 
+
+PayLoad URL Ex. http://3.81.7.189:8080/multibranch-webhook-trigger/invoke?token=dpp-token
